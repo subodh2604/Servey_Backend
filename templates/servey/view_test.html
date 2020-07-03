@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Test</title>
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="{% url 'update_test'%}">
+            {% csrf_token %}
+            
+            {% for q in questions %}
+            <h3>{{q.question}}</h3>
+            <h2> given answer is: {{q.answer}}</h2>
+            (1) <input type="radio" value="1" name="{{q.question}}"  {% if q.answer == '1' %}checked{% endif %} > {{q.optionA}}<br>
+            (2) <input type="radio" value="2" name="{{q.question}}"  {% if q.answer == '2' %}checked{% endif %}  > {{q.optionB}}<br>
+            (3) <input type="radio" value="3" name="{{q.question}}"   {% if q.answer == '3' %}checked{% endif %}  > {{q.optionC}}<br>
+            (4) <input type="radio" value="4" name="{{q.question}}"   {% if q.answer == '4' %}checked{% endif %}  > {{q.optionD}}<br>
+            {% endfor %}
+        
+            <button class="btn btn-success" type="submit"> UPDATE</button>
+
+        </form>
+
+    </div>
+    
+</body>
+</html>
